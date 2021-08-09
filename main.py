@@ -231,6 +231,7 @@ class MyApp(QWidget):
         self.pop_error_msg("분석 완료", "분석이 완료됐습니다.\n확인을 눌러주세요.")
 
         self.lw_classes.clear()
+        self.lw_results.clear()
         # print(self.yolo.results)
         classes = []
         for results in self.yolo.results:
