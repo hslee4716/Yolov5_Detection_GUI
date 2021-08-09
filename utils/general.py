@@ -186,8 +186,8 @@ def scale_coords(img1_shape, coords, img0_shape, ratio_pad=None):
     return coords
 
 def draw_bbox(img, im0, pred):
-    fontpath = "font/malgun.ttf"
-    font = ImageFont.truetype(fontpath, 12)
+    fontpath = "font/H2HDRM.TTF"
+    font = ImageFont.truetype(fontpath, 14)
     
     for det in pred:
         det[:, :4] = scale_coords(img.shape[2:], det[:, :4], im0.shape).round()
@@ -200,11 +200,11 @@ def draw_bbox(img, im0, pred):
 
             img_pil = Image.fromarray(im0)
             draw = ImageDraw.Draw(img_pil)
-            draw.text((c1[0],c1[1]-15), CLASSES[int(cls)] , font=font, fill=(0,0,255,0))
+            draw.text((c1[0],c1[1]-18), CLASSES[int(cls)] , font=font, fill=(255,255,0,0))
             im0 = np.array(img_pil)
 
             # cv2.putText(im0, CLASSES[int(cls)], c1, color=(0,255,0),thickness=1, fontFace=0, fontScale=0.5)
-            cv2.rectangle(im0, c1, c2, color=(255,0,0), thickness = 1, lineType=cv2.LINE_AA)
+            cv2.rectangle(im0, c1, c2, color=(255,0,0), thickness = 2, lineType=cv2.LINE_AA)
 
             results.append([float(cfd), int(cls)])
             xys.append((c1,c2))

@@ -117,9 +117,3 @@ class yolov5_custom():
         # if self.dataset.isvideo:
         #     out.release()
         # cv2.destroyAllWindows()
-
-
-# y = yolov5_custom()
-# y.load_model()
-# y.load_dataset()
-# y.detect()

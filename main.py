@@ -1,4 +1,3 @@
-# -*- coding: cp949 -*- 
 from custom_detect_module import yolov5_custom
 from glob import glob
 from PyQt5 import QtGui
@@ -13,41 +12,41 @@ from tkinter import filedialog
 
 IMG_FORMATS = ['bmp', 'jpg', 'jpeg', 'png', 'tif', 'tiff', 'dng', 'webp', 'mpo']  # acceptable image suffixes
 VID_FORMATS = ['mov', 'avi', 'mp4', 'mpg', 'mpeg', 'm4v', 'wmv', 'mkv']  # acceptable video suffixes
-CLASSES = ["°æÂûÂ÷","±¸±ŞÂ÷","±âÅ¸Æ¯ÀåÂ÷(°ßÀÎÂ÷, ¾²·¹±âÂ÷, Å©·¹ÀÎ µî)","¼ºÀÎ(³ëÀÎÆ÷ÇÔ)","¾î¸°ÀÌ","ÀÚÀü°Å","¿ÀÅä¹ÙÀÌ","Àüµ¿ÈÙ/Àüµ¿Å±º¸µå/Àüµ¿ÈÙÃ¼¾î","¹ö½º(¼ÒÇü,´ëÇü)", "¼¼´Ü","ÅëÇĞ¹ö½º(¼ÒÇü,´ëÇü)","Æ®·°","SUV/½ÂÇÕÂ÷"]
+CLASSES = ["ê²½ì°°ì°¨","êµ¬ê¸‰ì°¨","ê¸°íƒ€íŠ¹ì¥ì°¨(ê²¬ì¸ì°¨, ì“°ë ˆê¸°ì°¨, í¬ë ˆì¸ ë“±)","ì„±ì¸(ë…¸ì¸í¬í•¨)","ì–´ë¦°ì´","ìì „ê±°","ì˜¤í† ë°”ì´","ì „ë™íœ /ì „ë™í‚¥ë³´ë“œ/ì „ë™íœ ì²´ì–´","ë²„ìŠ¤(ì†Œí˜•,ëŒ€í˜•)", "ì„¸ë‹¨","í†µí•™ë²„ìŠ¤(ì†Œí˜•,ëŒ€í˜•)","íŠ¸ëŸ­","SUV/ìŠ¹í•©ì°¨"]
 
 class MyApp(QWidget):
     def __init__(self):
         super().__init__()
         self.yolo = yolov5_custom()
 
-        # parameters ¦¤  ----------------------------------------------------------------
+        # parameters â”  ----------------------------------------------------------------
         self.dataset_dir = None
-        # parameters ¦¥  ----------------------------------------------------------------
+        # parameters â”˜  ----------------------------------------------------------------
 
-        # conponents ¦¤  ----------------------------------------------------------------
+        # conponents â”  ----------------------------------------------------------------
         # labels
-        self.label_dir = QLabel('¼Ò½º Æú´õ ¼±ÅÃ')
+        self.label_dir = QLabel('ì†ŒìŠ¤ í´ë” ì„ íƒ')
         self.label_dir.setStyleSheet("border-radius: 25px;border: 1px solid black;")
         self.label_dir.setAlignment(Qt.AlignCenter)
 
-        self.label_weight = QLabel('°¡ÁßÄ¡ ÆÄÀÏ ¼±ÅÃ')
+        self.label_weight = QLabel('ê°€ì¤‘ì¹˜ íŒŒì¼ ì„ íƒ')
         self.label_weight.setStyleSheet("border-radius: 25px;border: 1px solid black;")
         self.label_weight.setAlignment(Qt.AlignCenter)
 
-        self.label_imgsz = QLabel('img size ¼±ÅÃ')
+        self.label_imgsz = QLabel('img size ì„ íƒ')
         self.label_imgsz.setStyleSheet("border-radius: 25px;border: 1px solid black;")
         self.label_imgsz.setAlignment(Qt.AlignCenter)
 
-        self.label_skipFrame = QLabel('°Ç³Ê¶Û frame ¼ö ¼±ÅÃ')
+        self.label_skipFrame = QLabel('ê±´ë„ˆë›¸ frame ìˆ˜ ì„ íƒ')
         self.label_skipFrame.setStyleSheet("border-radius: 25px;border: 1px solid black;")
         self.label_skipFrame.setAlignment(Qt.AlignCenter)
 
-        self.label_classes = QLabel('°Ë»öÇÒ °´Ã¼ ¼±ÅÃ(´õºíÅ¬¸¯)')
+        self.label_classes = QLabel('ê²€ìƒ‰í•  ê°ì²´ ì„ íƒ(ë”ë¸”í´ë¦­)')
         self.label_classes.setStyleSheet("border-radius: 25px;border: 1px solid black;")
         self.label_classes.setFont(QtGui.QFont(None, 10))
         self.label_classes.setAlignment(Qt.AlignCenter)
 
-        self.label_result = QLabel('·»´õ¸µÇÒ ÇÁ·¹ÀÓ ¼±ÅÃ(´õºíÅ¬¸¯)')
+        self.label_result = QLabel('ë Œë”ë§í•  í”„ë ˆì„ ì„ íƒ(ë”ë¸”í´ë¦­)')
         self.label_result.setStyleSheet("border-radius: 25px;border: 1px solid black;")
         self.label_result.setFont(QtGui.QFont(None,10))
         self.label_result.setAlignment(Qt.AlignCenter)
@@ -67,16 +66,16 @@ class MyApp(QWidget):
         self.btn_select_dir = QPushButton('...', self)
         self.btn_select_dir.clicked.connect(self.btn_select_dir_func)
 
-        self.btn_quit = QPushButton('³ª°¡±â', self)
+        self.btn_quit = QPushButton('ë‚˜ê°€ê¸°', self)
         self.btn_quit.clicked.connect(QCoreApplication.instance().quit)
 
-        self.btn_load_model = QPushButton('¸ğµ¨ ºÒ·¯¿À±â', self)
+        self.btn_load_model = QPushButton('ëª¨ë¸ ë¶ˆëŸ¬ì˜¤ê¸°', self)
         self.btn_load_model.clicked.connect(self.btn_load_model_func)
 
-        self.btn_load_dataset = QPushButton('µ¥ÀÌÅÍ¼Â ºÒ·¯¿À±â', self)
+        self.btn_load_dataset = QPushButton('ë°ì´í„°ì…‹ ë¶ˆëŸ¬ì˜¤ê¸°', self)
         self.btn_load_dataset.clicked.connect(self.btn_load_dataset_func)
 
-        self.btn_detect = QPushButton('ºĞ¼®', self)
+        self.btn_detect = QPushButton('ë¶„ì„', self)
         self.btn_detect.clicked.connect(self.btn_detect_func)
 
         # comboboxes
@@ -89,6 +88,7 @@ class MyApp(QWidget):
         self.cb_select_imgsz = QComboBox(self)
         for imgsz in range(64,801,32):
             self.cb_select_imgsz.addItem(str(imgsz))
+        self.cb_select_imgsz.setCurrentIndex(8)
 
         self.cb_skipFrame = QComboBox(self)
         for frame in [1, 2, 3, 5, 10, 30, 60]:
@@ -109,33 +109,34 @@ class MyApp(QWidget):
 
         # Image, pixmap
         self.qimg = QImage()
-        # conponents ¦¥  ----------------------------------------------------------------
+        # conponents â”˜  ----------------------------------------------------------------
 
 
-        # set Layout ¦¤  ----------------------------------------------------------------
+        # set Layout â”  ----------------------------------------------------------------
         ## set component position - form lbx
         self.form_lbx = QBoxLayout(QBoxLayout.TopToBottom, parent=self)
         self.setLayout(self.form_lbx)
 
-        # group box_1 -> ¸ğµ¨ ¼³Á¤
+        # group box_1 -> ëª¨ë¸ ì„¤ì •
         self.gb_1 = QGroupBox(self)
-        self.gb_1.setTitle("¸ğµ¨ ¼³Á¤")
+        self.gb_1.setTitle("ëª¨ë¸ ì„¤ì •")
         self.form_lbx.addWidget(self.gb_1)
 
         self.grid_1 = QGridLayout()
         self.gb_1.setLayout(self.grid_1)
 
-        self.grid_1.addWidget(self.label_weight,0,0,1,3)
-        self.grid_1.addWidget(self.cb_select_weight,0,3,1,1)
+        self.grid_1.addWidget(self.label_weight,0,0,1,1)
+        self.grid_1.addWidget(self.cb_select_weight,0,1,1,1)
 
-        self.grid_1.addWidget(self.label_imgsz,1,0,1,3)
-        self.grid_1.addWidget(self.cb_select_imgsz,1,3,1,1)
+        self.grid_1.addWidget(self.label_imgsz,0,2,1,1)
+        self.grid_1.addWidget(self.cb_select_imgsz,0,3,1,1)
+
 
         self.grid_1.addWidget(self.btn_load_model,2,0,1,4)
         
-        # group box_2 -> µ¥ÀÌÅÍ¼Â ·Îµå
+        # group box_2 -> ë°ì´í„°ì…‹ ë¡œë“œ
         self.gb_2 = QGroupBox(self)
-        self.gb_2.setTitle("µ¥ÀÌÅÍ¼Â ºÒ·¯¿À±â")
+        self.gb_2.setTitle("ë°ì´í„°ì…‹ ë¶ˆëŸ¬ì˜¤ê¸°")
         self.form_lbx.addWidget(self.gb_2)
 
         self.grid_2 = QGridLayout()
@@ -147,9 +148,9 @@ class MyApp(QWidget):
         self.grid_2.addWidget(self.lw_imgs,1,0,1,4)
         self.grid_2.addWidget(self.btn_load_dataset,2,0,1,4)
 
-        # group box_3 -> ºĞ¼®
+        # group box_3 -> ë¶„ì„
         self.gb_3 = QGroupBox(self)
-        self.gb_3.setTitle("ºĞ¼®")
+        self.gb_3.setTitle("ë¶„ì„")
         self.form_lbx.addWidget(self.gb_3)
 
         self.grid_3 = QGridLayout()
@@ -167,23 +168,11 @@ class MyApp(QWidget):
         self.grid_3.addWidget(self.label_arrow, 3, 1, 2, 1)
         self.grid_3.addWidget(self.lw_results,3,2)
 
-        # group box_4 -> ÇÁ·¹ÀÓ ÀÌ¹ÌÁö
-        self.gb_4 = QGroupBox(self)
-        self.gb_4.setTitle("ºĞ¼®")
-        self.form_lbx.addWidget(self.gb_4)
+        # set Layout â”˜  ----------------------------------------------------------------
 
-        self.grid_4 = QGridLayout()
-        self.gb_4.setLayout(self.grid_4)
-        
-        self.grid_4.addWidget(self.label_img,0,0)
-
-        
-
-        # set Layout ¦¥  ----------------------------------------------------------------
-
-        # Ã¢ ¼³Á¤
+        # ì°½ ì„¤ì •
         self.setWindowTitle('Yolo_v5_Object_Detection')
-        self.setGeometry(300, 300, 600, 500)
+        self.setGeometry(400, 100, 650, 800)
         self.form_lbx.addWidget(self.btn_quit)
         self.show()
 
@@ -193,7 +182,7 @@ class MyApp(QWidget):
             self.label_model_info = QLabel('')
             self.label_model_info.setStyleSheet("border-radius: 3px;border: 1px solid black;")
             self.label_model_info.setAlignment(Qt.AlignCenter)
-            self.label_model_info.setFont(QtGui.QFont("arial", 15))
+            self.label_model_info.setFont(QtGui.QFont("arial", 12))
             self.grid_1.addWidget(self.label_model_info,3,0,1,4)
         self.yolo.load_model(weights='weights/'+self.cb_select_weight.currentText(), imgsz= int(self.cb_select_imgsz.currentText()))
         self.label_model_info.setText(text)
@@ -203,7 +192,7 @@ class MyApp(QWidget):
         root.withdraw()
         dir_path = filedialog.askdirectory(parent=root,initialdir="/",title='Please select a directory')
         self.dataset_dir = dir_path
-        self.label_dir.setText("°æ·Î: "+dir_path)
+        self.label_dir.setText("ê²½ë¡œ: "+dir_path)
         self.lw_imgs.clear()
         imgs = glob(dir_path+"/*")
         for img in imgs:
@@ -212,23 +201,23 @@ class MyApp(QWidget):
 
     def btn_load_dataset_func(self):
         if self.yolo.model == None :
-            self.pop_error_msg("µ¥ÀÌÅÍ¼Â ¼³Á¤ ºÒ°¡", "¸ğµ¨ÀÌ ¼³Á¤µÇÁö ¾Ê¾Ò½À´Ï´Ù. ¸ğµ¨À» ¸ÕÀú ¼³Á¤ÇØ ÁÖ¼¼¿ä.")
+            self.pop_error_msg("ë°ì´í„°ì…‹ ì„¤ì • ë¶ˆê°€", "ëª¨ë¸ì´ ì„¤ì •ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤. ëª¨ë¸ì„ ë¨¼ì € ì„¤ì •í•´ ì£¼ì„¸ìš”.")
             return
         if self.lw_imgs.currentItem() == None:
-            self.pop_error_msg("µ¥ÀÌÅÍ¼Â ¼³Á¤ ºÒ°¡", "ÆÄÀÏÀ» ¼±ÅÃÇØ ÁÖ¼¼¿ä..")
+            self.pop_error_msg("ë°ì´í„°ì…‹ ì„¤ì • ë¶ˆê°€", "íŒŒì¼ì„ ì„ íƒí•´ ì£¼ì„¸ìš”..")
             return
         source = self.dataset_dir + "/" +self.lw_imgs.currentItem().text()
         self.yolo.load_dataset(source=source)
 
     def btn_detect_func(self):
         if self.yolo.dataset == None:
-            self.pop_error_msg("ºĞ¼® ºÒ°¡", "µ¥ÀÌÅÍ¼ÂÀÌ ·ÎµåµÇÁö ¾Ê¾Ò½À´Ï´Ù.")
+            self.pop_error_msg("ë¶„ì„ ë¶ˆê°€", "ë°ì´í„°ì…‹ì´ ë¡œë“œë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.")
             return
-        self.pop_error_msg("ºĞ¼®Áß", "ºĞ¼® ¿Ï·á ÈÄ ¿Ï·á ¸Ş½ÃÁö°¡ ¹ß»ıÇÕ´Ï´Ù.\nÈ®ÀÎÀ» ´©¸£¸é ºĞ¼®ÀÌ ½ÃÀÛµË´Ï´Ù.")
+        self.pop_info_msg("ë¶„ì„ì¤‘", "ë¶„ì„ ì™„ë£Œ í›„ ì™„ë£Œ ë©”ì‹œì§€ê°€ ë°œìƒí•©ë‹ˆë‹¤.\ní™•ì¸ì„ ëˆ„ë¥´ë©´ ë¶„ì„ì´ ì‹œì‘ë©ë‹ˆë‹¤.")
 
         self.yolo.skipFrame = int(self.cb_skipFrame.currentText())
         self.yolo.detect()
-        self.pop_error_msg("ºĞ¼® ¿Ï·á", "ºĞ¼®ÀÌ ¿Ï·áµÆ½À´Ï´Ù.\nÈ®ÀÎÀ» ´­·¯ÁÖ¼¼¿ä.")
+        self.pop_info_msg("ë¶„ì„ ì™„ë£Œ", "ë¶„ì„ì´ ì™„ë£ŒëìŠµë‹ˆë‹¤.\ní™•ì¸ì„ ëˆŒëŸ¬ì£¼ì„¸ìš”.")
 
         self.lw_classes.clear()
         self.lw_results.clear()
@@ -249,17 +238,20 @@ class MyApp(QWidget):
         for frame, xy, results in zip(self.yolo.frame, self.yolo.xys, self.yolo.results):
             for result in results:
                 if result[1] == target_class:
-                    self.lw_results.addItem("frame: "+str(frame) + " // label: "+ label)
+                    fps = self.yolo.dataset.fps
+                    temp = self.SecondConverter(frame//fps) + " / " if fps != None else ""
+                    text = temp +"frame: "+str(frame) + " / label: "+ label
+                    self.lw_results.addItem(text)
                     break
 
     def lw_results_doubleclicked_func(self):
-        index = int(self.lw_results.currentItem().text().split(':')[1].split('//')[0])
+        index = int(self.lw_results.currentItem().text().split(':')[-2].split('/')[0])
         img = self.yolo.curr_imgs[self.yolo.frame.index(index)]
 
+        cv2.namedWindow ("img",cv2.WINDOW_NORMAL)
         cv2.imshow("img", img)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
-
 
 
     def pop_error_msg(self, title, inform):
@@ -269,8 +261,27 @@ class MyApp(QWidget):
         msgBox.setText(inform)
         msgBox.setDefaultButton(QMessageBox.Ok)
         msgBox.exec_()
+
+    def pop_info_msg(self, title, inform):
+        msgBox = QMessageBox()
+        msgBox.setWindowTitle(title)
+        msgBox.setIcon(QMessageBox.Information)
+        msgBox.setText(inform)
+        msgBox.setDefaultButton(QMessageBox.Ok)
+        msgBox.exec_()
     
+    def SecondConverter(self,x):
+        d = int(x/86400)
+        x-=(d*86400)
+        h = int(x/3600)
+        x-=(h*3600)
+        m = int(x/60)
+        x -= (m*60)
+        s = x
+        return f"{h:02}:{m:02d}:{s:02d}"
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = MyApp()
+    print(ex.SecondConverter(10000))
     sys.exit(app.exec_())

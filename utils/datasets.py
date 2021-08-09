@@ -71,6 +71,7 @@ class LoadImages:  # for inference
         self.nf = ni + nv  # number of files
         self.video_flag = [False] * ni + [True] * nv
         self.mode = 'image'
+        self.fps = None
         if any(videos):
             self.new_video(videos[0])  # new video
             self.isvideo == True
@@ -140,6 +141,8 @@ class LoadStreams:  # multiple IP or RTSP cameras
         self.img_size = img_size
         self.stride = stride
         self.isvideo = True
+        self.frames = None
+
         if os.path.isfile(sources):
             with open(sources, 'r') as f:
                 sources = [x.strip() for x in f.read().strip().splitlines() if len(x.strip())]
