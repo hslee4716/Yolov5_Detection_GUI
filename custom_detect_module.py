@@ -1,6 +1,3 @@
-from utils.general import check_img_size, non_max_suppression, draw_bbox
-from utils.datasets import LoadStreams, LoadImages
-from models.experimental import attempt_load
 import numpy as np
 import torch
 import cv2
@@ -9,6 +6,11 @@ import time
 from pathlib import Path
 FILE = Path(__file__).absolute()
 sys.path.append(FILE.parents[0].as_posix())  # add yolov5/ to path
+
+from utils.general import check_img_size, non_max_suppression, draw_bbox
+from utils.datasets import LoadStreams, LoadImages
+from models.experimental import attempt_load
+
 
 
 class yolov5_custom():

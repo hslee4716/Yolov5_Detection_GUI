@@ -7,7 +7,7 @@ import torch
 import torchvision
 from PIL import ImageFont, ImageDraw, Image
 
-CLASSES = ["경찰차","구급차","기타특장차(견인차, 쓰레기차, 크레인 등)","성인(노인포함)","어린이","자전거","오토바이","전동휠/전동킥보드/전동휠체어","버스(소형,대형)", "세단","통학버스(소형,대형)","트럭","SUV/승합차"]
+CLASSES = ["경찰차","구급차","기타특장차(견인차, 쓰레기차, 크레인 등)","성인(노인포함)","어린이","자전거","오토바이","전동휠/전동킥보드/전동휠체어","버스(소형,대형)", "일반차량","통학버스(소형,대형)","트럭","일반차량"]
 
 # Settings
 torch.set_printoptions(linewidth=320, precision=5, profile='long')

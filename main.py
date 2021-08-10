@@ -12,7 +12,7 @@ from tkinter import filedialog
 
 IMG_FORMATS = ['bmp', 'jpg', 'jpeg', 'png', 'tif', 'tiff', 'dng', 'webp', 'mpo']  # acceptable image suffixes
 VID_FORMATS = ['mov', 'avi', 'mp4', 'mpg', 'mpeg', 'm4v', 'wmv', 'mkv']  # acceptable video suffixes
-CLASSES = ["경찰차","구급차","기타특장차(견인차, 쓰레기차, 크레인 등)","성인(노인포함)","어린이","자전거","오토바이","전동휠/전동킥보드/전동휠체어","버스(소형,대형)", "세단","통학버스(소형,대형)","트럭","SUV/승합차"]
+CLASSES = ["경찰차","구급차","기타특장차(견인차, 쓰레기차, 크레인 등)","성인(노인포함)","어린이","자전거","오토바이","전동휠/전동킥보드/전동휠체어","버스(소형,대형)", "일반차량","통학버스(소형,대형)","트럭","일반차량"]
 
 class MyApp(QWidget):
     def __init__(self):
@@ -210,6 +210,7 @@ class MyApp(QWidget):
         self.yolo.load_dataset(source=source)
 
     def btn_detect_func(self):
+        cv2.destroyAllWindows()
         if self.yolo.dataset == None:
             self.pop_error_msg("분석 불가", "데이터셋이 로드되지 않았습니다.")
             return
