@@ -23,7 +23,7 @@ class Ensemble(nn.ModuleList):
         y = torch.cat(y, 1)  # nms ensemble
         return y, None  # inference, train output
 
-def attempt_load(weights, map_location=None, inplace=True):
+def attempt_load(weights, map_location=torch.device('cpu'), inplace=True):
     from models.yolo import Model, Detect
     # Loads an ensemble of models weights=[a,b,c] or a single model weights=[a] or weights=a
     model = Ensemble()
